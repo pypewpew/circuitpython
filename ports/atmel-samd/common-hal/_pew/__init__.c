@@ -92,7 +92,7 @@ void pew_tick(void) {
         if (col >= pew->cols_size) {
             col = 0;
             ++turn;
-            if (turn > 5) {
+            if (turn > 4) {
                 turn = 0;
             }
         }
