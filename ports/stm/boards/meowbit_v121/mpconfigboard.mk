@@ -22,3 +22,4 @@ LD_FILE = boards/STM32F401xe_boot.ld
 # LD_FILE = boards/STM32F401xe_fs.ld
 
 CIRCUITPY_ULAB = 0
+CIRCUITPY_STAGE = 1

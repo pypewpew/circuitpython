@@ -43,45 +43,75 @@ void pew_tick(void) {
     pew_obj_t* pew = MP_STATE_VM(pew_singleton);
     if (!pew) { return; }
 
-    pin = MP_OBJ_TO_PTR(pew->cols[col]);
-    ++col;
-    if (col >= pew->cols_size) {
-        pew->pressed |= last_pressed & pressed;
-        last_pressed = pressed;
-        pressed = 0;
-        col = 0;
-        ++turn;
-        if (turn > 11) {
-            turn = 0;
+    if (pew->buttons) { // mono matrix with buttons
+        pin = MP_OBJ_TO_PTR(pew->cols[col]);
+        ++col;
+        if (col >= pew->cols_size) {
+            pew->pressed |= last_pressed & pressed;
+            last_pressed = pressed;
+            pressed = 0;
+            col = 0;
+            ++turn;
+            if (turn > 11) {
+                turn = 0;
+            }
         }
-    }
-    if (!common_hal_digitalio_digitalinout_get_value(pew->buttons)) {
-        pressed |= 1 << col;
-    }
-    common_hal_digitalio_digitalinout_set_value(pin, true);
-    for (size_t x = 0; x < pew->rows_size; ++x) {
-        pin = MP_OBJ_TO_PTR(pew->rows[x]);
-        uint8_t color = pew->buffer[col * (pew->rows_size) + x];
-        bool value = false;
-        switch (color & 0x03) {
-            case 3:
-                value = true;
-                break;
-            case 2:
-                if (turn == 2 || turn == 5 || turn == 8 || turn == 11) {
-                        value = true;
-                }
-                break;
-            case 1:
-                if (turn == 0) {
+        if (!common_hal_digitalio_digitalinout_get_value(pew->buttons)) {
+            pressed |= 1 << col;
+        }
+        common_hal_digitalio_digitalinout_set_value(pin, true);
+        for (size_t x = 0; x < pew->rows_size; ++x) {
+            pin = MP_OBJ_TO_PTR(pew->rows[x]);
+            uint8_t color = pew->buffer[col * (pew->rows_size) + x];
+            bool value = false;
+            switch (color & 0x03) {
+                case 3:
                     value = true;
-                }
-                break;
-            case 0:
-                break;
+                    break;
+                case 2:
+                    if (turn == 2 || turn == 5 || turn == 8 || turn == 11) {
+                            value = true;
+                    }
+                    break;
+                case 1:
+                    if (turn == 0) {
+                        value = true;
+                    }
+                    break;
+                case 0:
+                    break;
+            }
+            common_hal_digitalio_digitalinout_set_value(pin, value);
         }
-        common_hal_digitalio_digitalinout_set_value(pin, value);
+        pin = MP_OBJ_TO_PTR(pew->cols[col]);
+        common_hal_digitalio_digitalinout_set_value(pin, false);
+    } else { // bi-color matrix with touchpads
+        pin = MP_OBJ_TO_PTR(pew->cols[col]);
+        common_hal_digitalio_digitalinout_switch_to_input(pin, PULL_NONE);
+        ++col;
+        if (col >= pew->cols_size) {
+            col = 0;
+            ++turn;
+            if (turn > 5) {
+                turn = 0;
+            }
+        }
+        if (turn > 1) {
+            return;
+        }
+        for (size_t x = 0; x < pew->rows_size; ++x) {
+            uint8_t color = pew->buffer[x * (pew->cols_size) + col];
+            bool value = false;
+            if (turn) {
+                value = !(color & 0x02);
+            } else {
+                value = (color & 0x01);
+            }
+            pin = MP_OBJ_TO_PTR(pew->rows[x]);
+            common_hal_digitalio_digitalinout_set_value(pin, value);
+        }
+        pin = MP_OBJ_TO_PTR(pew->cols[col]);
+        common_hal_digitalio_digitalinout_switch_to_output(
+            pin, turn, DRIVE_MODE_PUSH_PULL);
     }
-    pin = MP_OBJ_TO_PTR(pew->cols[col]);
-    common_hal_digitalio_digitalinout_set_value(pin, false);
 }

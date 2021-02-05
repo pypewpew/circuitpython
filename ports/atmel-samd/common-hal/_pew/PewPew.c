@@ -60,7 +60,10 @@ void pewpew_interrupt_handler(uint8_t index) {
 void pew_init() {
     pew_obj_t* pew = MP_STATE_VM(pew_singleton);
 
-    common_hal_digitalio_digitalinout_switch_to_input(pew->buttons, PULL_UP);
+    if (pew->buttons) {
+        common_hal_digitalio_digitalinout_switch_to_input(pew->buttons,
+                                                          PULL_UP);
+    }
 
     for (size_t i = 0; i < pew->rows_size; ++i) {
         digitalio_digitalinout_obj_t *pin = MP_OBJ_TO_PTR(pew->rows[i]);
