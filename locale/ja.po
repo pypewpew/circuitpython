@@ -203,6 +203,10 @@ msgstr ""
 msgid "%q must be <= %d"
 msgstr ""
 
+#: ports/espressif/common-hal/watchdog/WatchDogTimer.c
+msgid "%q must be <= %u"
+msgstr ""
+
 #: py/argcheck.c
 msgid "%q must be >= %d"
 msgstr ""
@@ -453,10 +457,6 @@ msgstr "引数3つのpow()は非対応"
 #: ports/atmel-samd/common-hal/rotaryio/IncrementalEncoder.c
 msgid "A hardware interrupt channel is already in use"
 msgstr "ハードウェア割り込みチャネルは使用中"
-
-#: ports/espressif/common-hal/analogio/AnalogIn.c
-msgid "ADC2 is being used by WiFi"
-msgstr ""
 
 #: ports/raspberrypi/common-hal/wifi/Radio.c
 msgid "AP could not be started"
@@ -1179,10 +1179,6 @@ msgstr ""
 msgid "Initial set pin state conflicts with initial out pin state"
 msgstr ""
 
-#: ports/espressif/common-hal/watchdog/WatchDogTimer.c
-msgid "Initialization failed due to lack of memory"
-msgstr ""
-
 #: shared-bindings/bitops/__init__.c
 #, c-format
 msgid "Input buffer length (%d) must be a multiple of the strand count (%d)"
@@ -1820,11 +1816,6 @@ msgstr ""
 msgid "Pull not used when direction is output."
 msgstr "方向がoutputのときpullは使われません"
 
-#: ports/atmel-samd/common-hal/watchdog/WatchDogTimer.c
-#: ports/raspberrypi/common-hal/watchdog/WatchDogTimer.c
-msgid "RAISE mode is not implemented"
-msgstr ""
-
 #: ports/raspberrypi/common-hal/countio/Counter.c
 msgid "RISE_AND_FALL not available on this chip"
 msgstr ""
@@ -2171,11 +2162,6 @@ msgstr ""
 msgid "Unable to allocate the heap."
 msgstr ""
 
-#: ports/espressif/common-hal/analogbufio/BufferedIn.c
-#, c-format
-msgid "Unable to configure ADC DMA controller, ErrorCode:%d"
-msgstr ""
-
 #: ports/espressif/common-hal/busio/I2C.c
 msgid "Unable to create lock"
 msgstr ""
@@ -2194,19 +2180,9 @@ msgstr ""
 msgid "Unable to init parser"
 msgstr "パーザを初期化できません"
 
-#: ports/espressif/common-hal/analogbufio/BufferedIn.c
-#, c-format
-msgid "Unable to initialize ADC DMA controller, ErrorCode:%d"
-msgstr ""
-
 #: shared-module/displayio/OnDiskBitmap.c
 msgid "Unable to read color palette data"
 msgstr "カラーパレットデータを読み込めません"
-
-#: ports/espressif/common-hal/analogbufio/BufferedIn.c
-#, c-format
-msgid "Unable to start ADC DMA controller, ErrorCode:%d"
-msgstr ""
 
 #: ports/espressif/common-hal/mdns/Server.c
 #: ports/raspberrypi/common-hal/mdns/Server.c
@@ -2342,19 +2318,9 @@ msgstr "電圧読み取りがタイムアウト"
 msgid "WARNING: Your code filename has two extensions\n"
 msgstr ""
 
-#: ports/atmel-samd/common-hal/watchdog/WatchDogTimer.c
 #: ports/nrf/common-hal/watchdog/WatchDogTimer.c
-#: ports/raspberrypi/common-hal/watchdog/WatchDogTimer.c
 msgid "WatchDogTimer cannot be deinitialized once mode is set to RESET"
 msgstr ""
-
-#: shared-bindings/watchdog/WatchDogTimer.c
-msgid "WatchDogTimer is not currently running"
-msgstr "WatchDogTimerは現在動作していません"
-
-#: shared-bindings/watchdog/WatchDogTimer.c
-msgid "WatchDogTimer.mode cannot be changed once set to WatchDogMode.RESET"
-msgstr "WatchDogTimer.modeはいったんWatchDogMode.RESETに設定すると変更不可"
 
 #: py/builtinhelp.c
 #, c-format
@@ -4117,10 +4083,7 @@ msgstr "JSONに構文エラーがあります"
 msgid "syntax error in uctypes descriptor"
 msgstr "uctypedディスクリプタの構文エラー"
 
-#: ports/atmel-samd/common-hal/watchdog/WatchDogTimer.c
-#: ports/espressif/common-hal/watchdog/WatchDogTimer.c
 #: ports/nrf/common-hal/watchdog/WatchDogTimer.c
-#: ports/raspberrypi/common-hal/watchdog/WatchDogTimer.c
 msgid "timeout duration exceeded the maximum supported value"
 msgstr "タイムアウト長は対応する最大値を超えています"
 
@@ -4227,7 +4190,8 @@ msgstr ""
 msgid "unexpected keyword argument"
 msgstr ""
 
-#: py/bc.c py/objnamedtuple.c shared-bindings/traceback/__init__.c
+#: py/argcheck.c py/bc.c py/objnamedtuple.c
+#: shared-bindings/traceback/__init__.c
 msgid "unexpected keyword argument '%q'"
 msgstr "キーワード引数'%q'は使えません"
 
@@ -4321,10 +4285,6 @@ msgstr "値は%dバイトに収まらなければなりません"
 msgid "value out of range of target"
 msgstr ""
 
-#: ports/espressif/common-hal/watchdog/WatchDogTimer.c
-msgid "watchdog not initialized"
-msgstr ""
-
 #: shared-bindings/is31fl3741/FrameBuffer.c
 msgid "width must be greater than zero"
 msgstr ""
@@ -4384,10 +4344,6 @@ msgstr "アンパックする値の個数が不正です"
 msgid "wrong output type"
 msgstr ""
 
-#: ports/espressif/common-hal/audiobusio/__init__.c
-msgid "xTaskCreate failed"
-msgstr ""
-
 #: extmod/ulab/code/scipy/signal/signal.c
 msgid "zi must be an ndarray"
 msgstr "ziはndarrayでなければなりません"
@@ -4399,6 +4355,12 @@ msgstr "ziはfloat値でなければなりません"
 #: extmod/ulab/code/scipy/signal/signal.c
 msgid "zi must be of shape (n_section, 2)"
 msgstr ""
+
+#~ msgid "WatchDogTimer is not currently running"
+#~ msgstr "WatchDogTimerは現在動作していません"
+
+#~ msgid "WatchDogTimer.mode cannot be changed once set to WatchDogMode.RESET"
+#~ msgstr "WatchDogTimer.modeはいったんWatchDogMode.RESETに設定すると変更不可"
 
 #~ msgid "queue overflow"
 #~ msgstr "キューがオーバーフローしました"

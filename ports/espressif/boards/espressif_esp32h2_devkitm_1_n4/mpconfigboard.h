@@ -24,19 +24,14 @@
  * THE SOFTWARE.
  */
 
-// See https://github.com/espressif/esp-idf/issues/6906
+// Board setup
+#define MICROPY_HW_BOARD_NAME       "ESP32-H2-DevKitM-1"
+#define MICROPY_HW_MCU_NAME         "ESP32-H2N4"
 
-#ifndef MICROPY_INCLUDED_ESPRESSIF_ESP32C3_FIX_H
-#define MICROPY_INCLUDED_ESPRESSIF_ESP32C3_FIX_H
+// Status LED
+#define MICROPY_HW_NEOPIXEL         (&pin_GPIO8)
+#define MICROPY_HW_NEOPIXEL_COUNT   (1)
 
-#ifdef __riscv
-
-#undef __INT32_TYPE__
-#define __INT32_TYPE__      int
-
-#undef __UINT32_TYPE__
-#define __UINT32_TYPE__     unsigned int
-
-#endif // __riscv
-
-#endif // MICROPY_INCLUDED_ESPRESSIF_ESP32C3_FIX_H
+// Default bus pins
+#define DEFAULT_UART_BUS_RX         (&pin_GPIO23)
+#define DEFAULT_UART_BUS_TX         (&pin_GPIO24)

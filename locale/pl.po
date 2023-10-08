@@ -198,6 +198,10 @@ msgstr ""
 msgid "%q must be <= %d"
 msgstr ""
 
+#: ports/espressif/common-hal/watchdog/WatchDogTimer.c
+msgid "%q must be <= %u"
+msgstr ""
+
 #: py/argcheck.c
 msgid "%q must be >= %d"
 msgstr ""
@@ -448,10 +452,6 @@ msgstr "3-argumentowy pow() jest niewspierany"
 #: ports/atmel-samd/common-hal/rotaryio/IncrementalEncoder.c
 msgid "A hardware interrupt channel is already in use"
 msgstr "Kanał przerwań sprzętowych w użyciu"
-
-#: ports/espressif/common-hal/analogio/AnalogIn.c
-msgid "ADC2 is being used by WiFi"
-msgstr "ADC2 jest używany przez WiFi"
 
 #: ports/raspberrypi/common-hal/wifi/Radio.c
 msgid "AP could not be started"
@@ -1174,10 +1174,6 @@ msgstr ""
 msgid "Initial set pin state conflicts with initial out pin state"
 msgstr ""
 
-#: ports/espressif/common-hal/watchdog/WatchDogTimer.c
-msgid "Initialization failed due to lack of memory"
-msgstr "Inicjalizacja nie powiodła się z powodu braku pamięci"
-
 #: shared-bindings/bitops/__init__.c
 #, c-format
 msgid "Input buffer length (%d) must be a multiple of the strand count (%d)"
@@ -1812,11 +1808,6 @@ msgstr ""
 msgid "Pull not used when direction is output."
 msgstr "Podciągnięcie nieużywane w trybie wyjścia."
 
-#: ports/atmel-samd/common-hal/watchdog/WatchDogTimer.c
-#: ports/raspberrypi/common-hal/watchdog/WatchDogTimer.c
-msgid "RAISE mode is not implemented"
-msgstr ""
-
 #: ports/raspberrypi/common-hal/countio/Counter.c
 msgid "RISE_AND_FALL not available on this chip"
 msgstr ""
@@ -2162,11 +2153,6 @@ msgstr "Nie udała się alokacja buforów do konwersji ze znakiem"
 msgid "Unable to allocate the heap."
 msgstr ""
 
-#: ports/espressif/common-hal/analogbufio/BufferedIn.c
-#, c-format
-msgid "Unable to configure ADC DMA controller, ErrorCode:%d"
-msgstr ""
-
 #: ports/espressif/common-hal/busio/I2C.c
 msgid "Unable to create lock"
 msgstr ""
@@ -2185,19 +2171,9 @@ msgstr "Brak wolnego GCLK"
 msgid "Unable to init parser"
 msgstr "Błąd ustawienia parsera"
 
-#: ports/espressif/common-hal/analogbufio/BufferedIn.c
-#, c-format
-msgid "Unable to initialize ADC DMA controller, ErrorCode:%d"
-msgstr ""
-
 #: shared-module/displayio/OnDiskBitmap.c
 msgid "Unable to read color palette data"
 msgstr "Nie można odczytać danych palety"
-
-#: ports/espressif/common-hal/analogbufio/BufferedIn.c
-#, c-format
-msgid "Unable to start ADC DMA controller, ErrorCode:%d"
-msgstr ""
 
 #: ports/espressif/common-hal/mdns/Server.c
 #: ports/raspberrypi/common-hal/mdns/Server.c
@@ -2333,18 +2309,8 @@ msgstr ""
 msgid "WARNING: Your code filename has two extensions\n"
 msgstr "UWAGA: Nazwa pliku ma dwa rozszerzenia\n"
 
-#: ports/atmel-samd/common-hal/watchdog/WatchDogTimer.c
 #: ports/nrf/common-hal/watchdog/WatchDogTimer.c
-#: ports/raspberrypi/common-hal/watchdog/WatchDogTimer.c
 msgid "WatchDogTimer cannot be deinitialized once mode is set to RESET"
-msgstr ""
-
-#: shared-bindings/watchdog/WatchDogTimer.c
-msgid "WatchDogTimer is not currently running"
-msgstr ""
-
-#: shared-bindings/watchdog/WatchDogTimer.c
-msgid "WatchDogTimer.mode cannot be changed once set to WatchDogMode.RESET"
 msgstr ""
 
 #: py/builtinhelp.c
@@ -4104,10 +4070,7 @@ msgstr "błąd składni w JSON"
 msgid "syntax error in uctypes descriptor"
 msgstr "błąd składni w deskryptorze uctypes"
 
-#: ports/atmel-samd/common-hal/watchdog/WatchDogTimer.c
-#: ports/espressif/common-hal/watchdog/WatchDogTimer.c
 #: ports/nrf/common-hal/watchdog/WatchDogTimer.c
-#: ports/raspberrypi/common-hal/watchdog/WatchDogTimer.c
 msgid "timeout duration exceeded the maximum supported value"
 msgstr ""
 
@@ -4214,7 +4177,8 @@ msgstr "złe wcięcie"
 msgid "unexpected keyword argument"
 msgstr "zły argument nazwany"
 
-#: py/bc.c py/objnamedtuple.c shared-bindings/traceback/__init__.c
+#: py/argcheck.c py/bc.c py/objnamedtuple.c
+#: shared-bindings/traceback/__init__.c
 msgid "unexpected keyword argument '%q'"
 msgstr "zły argument nazwany '%q'"
 
@@ -4308,10 +4272,6 @@ msgstr "wartość musi mieścić się w %d bajtach"
 msgid "value out of range of target"
 msgstr ""
 
-#: ports/espressif/common-hal/watchdog/WatchDogTimer.c
-msgid "watchdog not initialized"
-msgstr ""
-
 #: shared-bindings/is31fl3741/FrameBuffer.c
 msgid "width must be greater than zero"
 msgstr "szerokość musi być większa niż zero"
@@ -4371,10 +4331,6 @@ msgstr "zła liczba wartości do rozpakowania"
 msgid "wrong output type"
 msgstr "nieprawidłowy typ wyjścia"
 
-#: ports/espressif/common-hal/audiobusio/__init__.c
-msgid "xTaskCreate failed"
-msgstr ""
-
 #: extmod/ulab/code/scipy/signal/signal.c
 msgid "zi must be an ndarray"
 msgstr ""
@@ -4386,6 +4342,12 @@ msgstr ""
 #: extmod/ulab/code/scipy/signal/signal.c
 msgid "zi must be of shape (n_section, 2)"
 msgstr ""
+
+#~ msgid "Initialization failed due to lack of memory"
+#~ msgstr "Inicjalizacja nie powiodła się z powodu braku pamięci"
+
+#~ msgid "ADC2 is being used by WiFi"
+#~ msgstr "ADC2 jest używany przez WiFi"
 
 #~ msgid "queue overflow"
 #~ msgstr "przepełnienie kolejki"

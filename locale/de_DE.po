@@ -205,6 +205,10 @@ msgstr "%q muss 1 sein, wenn %q wahr ist"
 msgid "%q must be <= %d"
 msgstr "%q muss <= %d sein"
 
+#: ports/espressif/common-hal/watchdog/WatchDogTimer.c
+msgid "%q must be <= %u"
+msgstr ""
+
 #: py/argcheck.c
 msgid "%q must be >= %d"
 msgstr "%q muss >= %d sein"
@@ -457,10 +461,6 @@ msgstr "3-arg pow() wird nicht unterstützt"
 #: ports/atmel-samd/common-hal/rotaryio/IncrementalEncoder.c
 msgid "A hardware interrupt channel is already in use"
 msgstr "Ein Hardware Interrupt Kanal wird schon benutzt"
-
-#: ports/espressif/common-hal/analogio/AnalogIn.c
-msgid "ADC2 is being used by WiFi"
-msgstr "ADC2 wird vom WiFi benutzt"
 
 #: ports/raspberrypi/common-hal/wifi/Radio.c
 msgid "AP could not be started"
@@ -1199,10 +1199,6 @@ msgstr ""
 "Anfänglicher Pin-Zustand steht im Widerspruch mit dem anfänglichen out-"
 "Zustand des Pins"
 
-#: ports/espressif/common-hal/watchdog/WatchDogTimer.c
-msgid "Initialization failed due to lack of memory"
-msgstr "Initialisierung aufgrund von Speichermangel fehlgeschlagen"
-
 #: shared-bindings/bitops/__init__.c
 #, c-format
 msgid "Input buffer length (%d) must be a multiple of the strand count (%d)"
@@ -1850,11 +1846,6 @@ msgstr "Programm zu lang"
 msgid "Pull not used when direction is output."
 msgstr "Pull wird nicht verwendet, wenn die Richtung output ist."
 
-#: ports/atmel-samd/common-hal/watchdog/WatchDogTimer.c
-#: ports/raspberrypi/common-hal/watchdog/WatchDogTimer.c
-msgid "RAISE mode is not implemented"
-msgstr "RAISE-Modus ist nicht implementiert"
-
 #: ports/raspberrypi/common-hal/countio/Counter.c
 msgid "RISE_AND_FALL not available on this chip"
 msgstr "RISE_AND_FALL ist auf diesem Chip nicht verfügbar"
@@ -2207,11 +2198,6 @@ msgstr "Konnte keine Buffer für Vorzeichenumwandlung allozieren"
 msgid "Unable to allocate the heap."
 msgstr "Keine Allokation auf dem Heap möglich."
 
-#: ports/espressif/common-hal/analogbufio/BufferedIn.c
-#, c-format
-msgid "Unable to configure ADC DMA controller, ErrorCode:%d"
-msgstr "ADC-DMA-Controller konnte nicht konfiguriert werden, Fehlercode: %d"
-
 #: ports/espressif/common-hal/busio/I2C.c
 msgid "Unable to create lock"
 msgstr "Lock kann nicht erzeugt werden"
@@ -2230,19 +2216,9 @@ msgstr "Konnte keinen freien GCLK finden"
 msgid "Unable to init parser"
 msgstr "Parser konnte nicht gestartet werden"
 
-#: ports/espressif/common-hal/analogbufio/BufferedIn.c
-#, c-format
-msgid "Unable to initialize ADC DMA controller, ErrorCode:%d"
-msgstr "ADC-DMA-Controller konnte nicht initialisiert werden, Fehlercode: %d"
-
 #: shared-module/displayio/OnDiskBitmap.c
 msgid "Unable to read color palette data"
 msgstr "Konnte Farbpalettendaten nicht lesen"
-
-#: ports/espressif/common-hal/analogbufio/BufferedIn.c
-#, c-format
-msgid "Unable to start ADC DMA controller, ErrorCode:%d"
-msgstr "ADC-DMA-Controller konnte nicht gestartet werden, Fehlercode: %d"
 
 #: ports/espressif/common-hal/mdns/Server.c
 #: ports/raspberrypi/common-hal/mdns/Server.c
@@ -2383,23 +2359,11 @@ msgid "WARNING: Your code filename has two extensions\n"
 msgstr ""
 "WARNUNG: Der Dateiname deines Programms hat zwei Dateityperweiterungen\n"
 
-#: ports/atmel-samd/common-hal/watchdog/WatchDogTimer.c
 #: ports/nrf/common-hal/watchdog/WatchDogTimer.c
-#: ports/raspberrypi/common-hal/watchdog/WatchDogTimer.c
 msgid "WatchDogTimer cannot be deinitialized once mode is set to RESET"
 msgstr ""
 "WatchDogTimer kann nicht deinitialisiert werden, wenn der Modus auf RESET "
 "gesetzt ist"
-
-#: shared-bindings/watchdog/WatchDogTimer.c
-msgid "WatchDogTimer is not currently running"
-msgstr "WatchDogTimer läuft aktuell nicht"
-
-#: shared-bindings/watchdog/WatchDogTimer.c
-msgid "WatchDogTimer.mode cannot be changed once set to WatchDogMode.RESET"
-msgstr ""
-"WatchDogTimer.mode kann nicht geändert werden, nachdem er auf WatchDogMode."
-"RESET gesetzt wurde"
 
 #: py/builtinhelp.c
 #, c-format
@@ -4190,10 +4154,7 @@ msgstr "Syntaxfehler in JSON"
 msgid "syntax error in uctypes descriptor"
 msgstr "Syntaxfehler in uctypes Deskriptor"
 
-#: ports/atmel-samd/common-hal/watchdog/WatchDogTimer.c
-#: ports/espressif/common-hal/watchdog/WatchDogTimer.c
 #: ports/nrf/common-hal/watchdog/WatchDogTimer.c
-#: ports/raspberrypi/common-hal/watchdog/WatchDogTimer.c
 msgid "timeout duration exceeded the maximum supported value"
 msgstr "Das Zeitlimit hat den maximal zulässigen Wert überschritten"
 
@@ -4302,7 +4263,8 @@ msgstr ""
 msgid "unexpected keyword argument"
 msgstr "unerwartetes Schlüsselwort-Argument"
 
-#: py/bc.c py/objnamedtuple.c shared-bindings/traceback/__init__.c
+#: py/argcheck.c py/bc.c py/objnamedtuple.c
+#: shared-bindings/traceback/__init__.c
 msgid "unexpected keyword argument '%q'"
 msgstr "unerwartetes Schlüsselwort-Argument '%q'"
 
@@ -4396,10 +4358,6 @@ msgstr "Wert muss in %d Byte(s) passen"
 msgid "value out of range of target"
 msgstr "Wert außerhalb des Zielbereiches"
 
-#: ports/espressif/common-hal/watchdog/WatchDogTimer.c
-msgid "watchdog not initialized"
-msgstr "watchdog nicht initialisiert"
-
 #: shared-bindings/is31fl3741/FrameBuffer.c
 msgid "width must be greater than zero"
 msgstr "Breite muss größer als 0 sein"
@@ -4459,10 +4417,6 @@ msgstr "falsche Anzahl zu entpackender Werte"
 msgid "wrong output type"
 msgstr "Falscher Ausgabetyp"
 
-#: ports/espressif/common-hal/audiobusio/__init__.c
-msgid "xTaskCreate failed"
-msgstr "xTaskCreate fehlgeschlagen"
-
 #: extmod/ulab/code/scipy/signal/signal.c
 msgid "zi must be an ndarray"
 msgstr "zi muss ein ndarray sein"
@@ -4474,6 +4428,42 @@ msgstr "zi muss eine Gleitkommazahl sein"
 #: extmod/ulab/code/scipy/signal/signal.c
 msgid "zi must be of shape (n_section, 2)"
 msgstr "zi muss die Form (n_section, 2) haben"
+
+#~ msgid "Initialization failed due to lack of memory"
+#~ msgstr "Initialisierung aufgrund von Speichermangel fehlgeschlagen"
+
+#~ msgid "RAISE mode is not implemented"
+#~ msgstr "RAISE-Modus ist nicht implementiert"
+
+#~ msgid "WatchDogTimer is not currently running"
+#~ msgstr "WatchDogTimer läuft aktuell nicht"
+
+#~ msgid "WatchDogTimer.mode cannot be changed once set to WatchDogMode.RESET"
+#~ msgstr ""
+#~ "WatchDogTimer.mode kann nicht geändert werden, nachdem er auf "
+#~ "WatchDogMode.RESET gesetzt wurde"
+
+#~ msgid "watchdog not initialized"
+#~ msgstr "watchdog nicht initialisiert"
+
+#~ msgid "ADC2 is being used by WiFi"
+#~ msgstr "ADC2 wird vom WiFi benutzt"
+
+#, c-format
+#~ msgid "Unable to configure ADC DMA controller, ErrorCode:%d"
+#~ msgstr "ADC-DMA-Controller konnte nicht konfiguriert werden, Fehlercode: %d"
+
+#, c-format
+#~ msgid "Unable to initialize ADC DMA controller, ErrorCode:%d"
+#~ msgstr ""
+#~ "ADC-DMA-Controller konnte nicht initialisiert werden, Fehlercode: %d"
+
+#, c-format
+#~ msgid "Unable to start ADC DMA controller, ErrorCode:%d"
+#~ msgstr "ADC-DMA-Controller konnte nicht gestartet werden, Fehlercode: %d"
+
+#~ msgid "xTaskCreate failed"
+#~ msgstr "xTaskCreate fehlgeschlagen"
 
 #~ msgid "Unable to write to address."
 #~ msgstr "An die Adresse kann nicht geschrieben werden."

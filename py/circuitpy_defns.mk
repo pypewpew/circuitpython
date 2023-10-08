@@ -603,6 +603,7 @@ SRC_SHARED_MODULE_ALL = \
 	displayio/TileGrid.c \
 	displayio/area.c \
 	displayio/__init__.c \
+	dotclockframebuffer/__init__.c \
 	floppyio/__init__.c \
 	fontio/BuiltinFont.c \
 	fontio/__init__.c \
@@ -665,6 +666,7 @@ SRC_SHARED_MODULE_ALL = \
 	usb/core/__init__.c \
 	usb/core/Device.c \
 	ustack/__init__.c \
+	watchdog/__init__.c \
 	zlib/__init__.c \
 	vectorio/Circle.c \
 	vectorio/Polygon.c \
