@@ -98,7 +98,7 @@ STATIC mp_obj_t data_type(int type) {
     return mp_obj_new_int(type);
 }
 
-mp_obj_t shared_module_qrio_qrdecoder_decode(qrdecoder_qrdecoder_obj_t *self, const mp_buffer_info_t *bufinfo, qrio_pixel_policy_t policy) {
+mp_obj_t shared_module_qrio_qrdecoder_decode(qrdecoder_qrdecoder_obj_t *self, const mp_buffer_info_t *bufinfo, qrio_pixel_policy_t policy, bool decode) {
     int width, height;
     uint8_t *framebuffer = quirc_begin(self->quirc, &width, &height);
     uint8_t *src = bufinfo->buf;
@@ -138,14 +138,30 @@ mp_obj_t shared_module_qrio_qrdecoder_decode(qrdecoder_qrdecoder_obj_t *self, co
     mp_obj_t result = mp_obj_new_list(0, NULL);
     for (int i = 0; i < count; i++) {
         quirc_extract(self->quirc, i, &self->code);
-        if (quirc_decode(&self->code, &self->data) != QUIRC_SUCCESS) {
-            continue;
+        mp_obj_t code_obj;
+        if (decode) {
+            if (quirc_decode(&self->code, &self->data) != QUIRC_SUCCESS) {
+                continue;
+            }
+            mp_obj_t elems[2] = {
+                mp_obj_new_bytes(self->data.payload, self->data.payload_len),
+                data_type(self->data.data_type),
+            };
+            code_obj = namedtuple_make_new((const mp_obj_type_t *)&qrio_qrinfo_type_obj, 2, 0, elems);
+        } else {
+            mp_obj_t elems[9] = {
+                mp_obj_new_int(self->code.corners[0].x),
+                mp_obj_new_int(self->code.corners[0].y),
+                mp_obj_new_int(self->code.corners[1].x),
+                mp_obj_new_int(self->code.corners[1].y),
+                mp_obj_new_int(self->code.corners[2].x),
+                mp_obj_new_int(self->code.corners[2].y),
+                mp_obj_new_int(self->code.corners[3].x),
+                mp_obj_new_int(self->code.corners[3].y),
+                mp_obj_new_int(self->code.size),
+            };
+            code_obj = namedtuple_make_new((const mp_obj_type_t *)&qrio_qrposition_type_obj, 9, 0, elems);
         }
-        mp_obj_t elems[2] = {
-            mp_obj_new_bytes(self->data.payload, self->data.payload_len),
-            data_type(self->data.data_type),
-        };
-        mp_obj_t code_obj = namedtuple_make_new((const mp_obj_type_t *)&qrio_qrinfo_type_obj, 2, 0, elems);
         mp_obj_list_append(result, code_obj);
     }
     return result;
